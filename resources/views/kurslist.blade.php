@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
 @section('content')
 
@@ -16,43 +16,26 @@
                     <table class="table table-striped" id="list">
                         <thead>
                             <tr>
+                            <th scope="col">ID kursu</th>
                             <th scope="col">Nazwa kursu</th>
-                            <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($kursy as $kurs)
                             <tr>
-                                <td>Interaktywne Aplikacje Multimedialne II</td>
+                                <td>{{ $kurs->idKurs }}</td>
+                                <td>{{ $kurs->Nazwa }}</td>
                                 <th scope="row" style="text-align: right">
+                                    <form  action="{{ route('kurslist.destroy',$kurs->idKurs) }}" method="POST">
                                     <button class="btn btn-success"><i class="fas fa-plus-circle"></i> Dodaj oceny</button>
                                     <button class="btn btn-primary"><i class="fas fa-edit"></i> Szczegóły</button>
-                                    <button class="btn btn-secondary text-white"><i class="fas fa-trash"></i> Usuń</button>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-secondary text-white" value="Delete" onclick="return confirm('Are you sure to delete?')"><i class="fas fa-trash"></i> Usuń</button>
+                                    </form>
                                 </th>
                             </tr>
-                            <tr>
-                                <td>Webowe Interfejsy Graficzne</td>
-                                <th scope="row" style="text-align: right">
-                                    <button class="btn btn-success"><i class="fas fa-plus-circle"></i> Dodaj oceny</button>
-                                    <button class="btn btn-primary"><i class="fas fa-edit"></i> Szczegóły</button>
-                                    <button class="btn btn-secondary text-white"><i class="fas fa-trash"></i> Usuń</button>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>Seminarium Dyplomowe</td>
-                                <th scope="row" style="text-align: right">
-                                    <button class="btn btn-success"><i class="fas fa-plus-circle"></i> Dodaj oceny</button>
-                                    <button class="btn btn-primary"><i class="fas fa-edit"></i> Szczegóły</button>
-                                    <button class="btn btn-secondary text-white"><i class="fas fa-trash"></i> Usuń</button>
-                                </th>    
-                            </tr>
-                            <tr>
-                                <td>Pracownia Dyplomowa</td>
-                                <th scope="row" style="text-align: right">
-                                    <button class="btn btn-success"><i class="fas fa-plus-circle"></i> Dodaj oceny</button>
-                                    <button class="btn btn-primary"><i class="fas fa-edit"></i> Szczegóły</button>
-                                    <button class="btn btn-secondary text-white"><i class="fas fa-trash"></i> Usuń</button>
-                                </th>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -62,3 +45,4 @@
         <div class="bg-dark text-center p-2 fixed-bottom">
             <span class= "text-secondary p-2 small opacity-75">Created by: K.Hnatusko & K.Pałęga</span>
         </div>
+@endsection

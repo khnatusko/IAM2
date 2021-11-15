@@ -12,7 +12,7 @@ class Kurs extends Model
 
     public $timestamps = false;
     protected $primaryKey = 'idKurs';
-    protected $fillable = ['idKurs','Nazwa','Data','Ocena_końcowa','Nauczyciele_idNauczyciele'];
+    protected $fillable = ['idKurs','Nazwa','Data','Nauczyciele_idNauczyciele'];
     protected $table = 'kurs';
 
 

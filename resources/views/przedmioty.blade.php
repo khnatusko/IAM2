@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
 @section('content')
-<div class="container">
+<div class="container my-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,16 +14,44 @@
                             <input type="text" name="name" class="form-control"/>
                         </div>  
                         
-                        <div class="form-group">
-                            <label><strong>Wybierz nauczyciela :</strong></label><br/>
-                            <select name="Nauczyciele_idNauczyciele" id="Nauczyciele_idNauczyciele" class="form control">
-                                
-                                @foreach ($nauczyciele as  $nauczyciel)
-                                    <option value="{{ $nauczyciel->idNauczyciele }}">{{ $nauczyciel->name }}</option>
-                                @endforeach
-                                
-                            </select>
-                            
+                        <div class="col-10 mx-auto p-2">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                              <div class="col-3">
+                                <label for="list" class="form-label">Dodaj nauczyciela</label>
+                              </div>
+                              <div class="col-8">
+                                <div class="input-group flex-nowrap col-10 mx-auto">
+                                    <input type="text" class="form-control" placeholder="Wyszukaj...">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>            
+                              </div>
+                            </div>
+    
+                            <table class="table" id="list">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Zaznacz</th>
+                                    <th scope="col">Imię</th>
+                                    <th scope="col">Nazwisko</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach ($nauczyciele as $nauczyciel)
+                                  <tr>
+                                    <th scope="row"><input class="form-check-input" name="Nauczyciele_idNauczyciele[]" type="checkbox" value="{{ $nauczyciel->idNauczyciele }}"></th>
+                                    <td>{{ $nauczyciel->name }}</td>
+                                    <td>{{ $nauczyciel->lastname }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                  @endforeach
+    
+                                </tbody>
+                              </table>
                         </div>
                         
                         <div class="text-center" style="margin-top: 10px;">

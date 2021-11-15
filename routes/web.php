@@ -5,20 +5,13 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PrzedmiotyController;
 use App\Http\Controllers\WiedzaController;
 use App\Http\Controllers\UczniowieController;
+use App\Http\Controllers\NauczycieleController;
+use App\Http\Controllers\KursController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 Route::get('/home', function () {
     return view('home');
@@ -42,17 +35,26 @@ Route::get('/kurslist', function () {
     return view('kurslist');
 });
 
-Route::get('przedmioty', [App\Http\Controllers\PrzedmiotyController::class, 'index']);
+Route::get('przedmioty', [App\Http\Controllers\PrzedmiotyController::class, 'getNauczyciel']);
 Route::post('/przedmioty',[App\Http\Controllers\PrzedmiotyController::class,'createPrzedmioty']);
 
 Route::get('wiedza', [App\Http\Controllers\WiedzaController::class, 'index']);
 Route::post('/wiedza',[App\Http\Controllers\WiedzaController::class,'createWiedza']);
 
-Route::get('uczniowie', [App\Http\Controllers\UczniowieController::class, 'index']);
+
 Route::post('/uczniowie',[App\Http\Controllers\UczniowieController::class,'createUczen']);
 
-Route::get('kurs', [App\Http\Controllers\KursController::class, 'index']);
+Route::get('kurs', [App\Http\Controllers\UczniowieController::class, 'getUczen', ]);
 Route::post('/kurs',[App\Http\Controllers\KursController::class,'createKurs']);
+
+//Route::get('kurslist', [App\Http\Controllers\KursController::class, 'getKurs'])->name('downloadkurs');
+//Route::get('kurslist' ,[App\Http\Controllers\KursController::class, 'destroy'])->name('delete');
+
+Route::resource('kurslist', KursController::class);
+//Route::post('destroy', [App\Http\Controllers\KursController::class, 'destroy']);
+
+
+
 
 Auth::routes();
 

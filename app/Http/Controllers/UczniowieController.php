@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Uczniowie;
 use App\Models\Kurs;
+use App\Models\Nauczyciele;
 use Illuminate\Http\Request;
 
 class UczniowieController extends Controller
@@ -13,7 +14,9 @@ class UczniowieController extends Controller
         $uczen = Uczniowie::create([
             'Imie' => $request->Imie,
             'Nazwisko' => $request->Nazwisko,
-            'Kurs_idKurs' =>$request->Kurs_idKurs,
+            'rok' => $request->rok,
+            'kierunek' => $request->kierunek,
+            'specjalizacja' => $request->specjalizacja,
         ]);
 
         $kursy = $request->Kurs_idKurs;
@@ -26,9 +29,18 @@ class UczniowieController extends Controller
         ]);
     }
 
-    public function index()
+
+    public function getUczen()
     {
-        $kursy = Kurs::select('idKurs','Nazwa')->get();
-        return view('uczniowie',compact('kursy'));
+        $uczniowie = Uczniowie::select('idUczniowie','Imie', 'Nazwisko','rok','kierunek','specjalizacja')->get();
+
+        return view('kurs',compact('uczniowie'));
+    }
+
+    public function getNauczyciel()
+    {
+        $nauczyciele = Nauczyciele::select('idNauczyciele','name', 'lastname')->get();
+
+        return view('kurs',compact('nauczyciele'));
     }
 }

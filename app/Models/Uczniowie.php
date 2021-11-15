@@ -12,7 +12,7 @@ class Uczniowie extends Model
 
     public $timestamps = false;
     protected $primaryKey = 'idUczniowie';
-    protected $fillable = ['idUczniowie','Imie','Nazwisko'];
+    protected $fillable = ['idUczniowie','Imie','Nazwisko','rok','kierunek','specjalizacja'];
     protected $table = 'uczniowie';
 
 
