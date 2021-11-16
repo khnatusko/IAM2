@@ -27,7 +27,7 @@
                                 <td>{{ $kurs->Nazwa }}</td>
                                 <th scope="row" style="text-align: right">
                                     <form  action="{{ route('kurslist.destroy',$kurs->idKurs) }}" method="POST">
-                                    <button class="btn btn-success"><i class="fas fa-plus-circle"></i> Dodaj oceny</button>
+                                    <a href="{{ url('/wiedza') }}" class="btn btn-success"><i class="fas fa-plus-circle"></i> Dodaj oceny</a>
                                     <button class="btn btn-primary"><i class="fas fa-edit"></i> Szczegóły</button>
                                     @csrf
                                     @method('DELETE')
